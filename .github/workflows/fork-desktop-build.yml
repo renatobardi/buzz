@@ -38,6 +38,13 @@ jobs:
       - name: Install desktop dependencies
         run: just desktop-install-ci
 
+      - name: Derive and patch build version
+        run: |
+          BASE_VERSION=$(node -p "require('./desktop/package.json').version")
+          VERSION="${BASE_VERSION%%-*}-local.${GITHUB_SHA::7}"
+          cd desktop && node scripts/set-version-from-tag.mjs "$VERSION"
+          cd src-tauri && cargo update --workspace
+
       - name: Cache Cargo build
         uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
