@@ -1,6 +1,6 @@
 name: Fork Desktop Build
 
-# Personal-fork CI/CD: builds an unsigned macOS desktop app from `main` and
+# Personal-fork CI/CD: builds an unsigned macOS desktop app from `fork/main` and
 # publishes it as a rolling GitHub Release, so a new build is always one
 # `git push` away instead of a hand-run local script.
 #
@@ -13,7 +13,7 @@ name: Fork Desktop Build
 
 on:
   push:
-    branches: [main]
+    branches: [fork/main]
   workflow_dispatch:
 
 permissions:

@@ -762,3 +762,16 @@ persistent automatic addresses. Use the returned label from registration for
 insert/restore/remove. Ambiguous manually typed names must fail visibly without
 clearing the draft in chat, edit, and standalone forum consumers; never fan out
 silently to all identities sharing a name. See `docs/mention-editor.md`.
+
+---
+
+## Fork workflow (renatobardi/buzz)
+
+Esta seção existe apenas em `fork/main` — não vai upstream.
+
+- `main` é espelho exato de `upstream/main`. Nunca commitar nele.
+- `fork/main` guarda o CI do fork (`fork-desktop-build.yml`), `docs/agents/` e esta seção.
+- Toda branch de PR nasce de `upstream/main`: `git checkout -b <tipo>/<slug> upstream/main`.
+- Todo commit precisa de `Signed-off-by` (Block DCO Check). `format.signOff` não funciona para `git commit` — o que vale é o hook `prepare-commit-msg` em `.git/hooks/`.
+- Antes de abrir PR: `git log --oneline upstream/main..HEAD` deve mostrar só os commits pretendidos.
+- Detalhes operacionais completos: skill `buzz-fork-workflow` em `.claude/skills/` (local, não versionada).
